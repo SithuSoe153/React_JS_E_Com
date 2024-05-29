@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AppBar, Paper, Tabs, Tab, Box, Toolbar, Button, makeStyles } from '@material-ui/core';
+import { Divider, AppBar, Paper, Tabs, Tab, Box, Toolbar, Button, makeStyles } from '@material-ui/core';
 import { BorderAllOutlined } from '@material-ui/icons';
 
 
@@ -59,7 +59,6 @@ const BottomNav = () => {
                     <Tab label="Sell On E-Comm" />
                 </Box>
             </Tabs>
-
         </AppBar >
     )
 }

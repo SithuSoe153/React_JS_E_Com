@@ -8,6 +8,7 @@ import { NavBar } from './components/NavBar'
 import { HeroSection } from './components/HeroSection'
 import { CategoryImageSection } from './components/CategoryImageSection'
 import { CarouselComponent } from './components/CarouselComponent'
+import { PromotionCoupon } from './components/PromotionCoupon'
 
 import './index.css'
 
@@ -18,7 +19,7 @@ const theme = createTheme({
       root: {
         padding: '0px 30px'
       }
-    }
+    },
   },
 
 
@@ -49,7 +50,14 @@ class App extends Component {
 
           <CategoryImageSection />
 
+          <Box style={{ margin: 30, backgroundColor: '#f8f8f8', margin: 300 }}>
+
+          </Box>
+
           <CarouselComponent />
+
+          <PromotionCoupon />
+
 
         </ThemeProvider >
 

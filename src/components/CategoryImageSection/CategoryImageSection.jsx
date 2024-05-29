@@ -3,17 +3,19 @@ import { Grid, Box, Card, CardMedia, CardContent, Typography, makeStyles } from 
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        backgroundColor: '#FFFFFF',
         margin: 0,
         marginTop: theme.spacing(100),
     },
 
     container: {
+        backgroundColor: '#FFFFFF',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         margin: 0,
-        padding: '0 30px', // Ensure no padding
-        marginTop: 80,
+        padding: '40px 30px', // Ensure no padding
+        // marginTop: 80,
         width: '100%', // Ensure full width
     },
 

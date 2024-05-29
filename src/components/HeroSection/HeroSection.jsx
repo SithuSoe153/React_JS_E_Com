@@ -8,12 +8,12 @@ import Carousel from './Carousel';
 
 const useStyles = makeStyles((theme) => ({
     container: {
+        backgroundColor: '#FFFFFF',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         margin: 0,
-        padding: '0 30px', // Ensure no padding
-        marginTop: 30,
+        padding: '50px 30px', // Ensure no padding
         width: '100%', // Ensure full width
     },
     mediaContainer: {
