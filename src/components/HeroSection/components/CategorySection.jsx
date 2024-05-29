@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     },
     listItem: {
         padding: theme.spacing(1),
+        cursor: 'pointer'
     },
 }));
 
@@ -65,7 +66,7 @@ const CategorySection = () => {
                 <Divider />
                 {categories.map((category, index) => (
                     <React.Fragment key={category}>
-                        <ListItem className={classes.listItem}>
+                        <ListItem className={classes.listItem} >
                             <ListItemText primary={category} /> <KeyboardArrowRightIcon />
                         </ListItem>
                         {index < categories.length - 1 && <Divider />}

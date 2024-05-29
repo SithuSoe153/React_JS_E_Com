@@ -4,7 +4,7 @@ import { Box, Button, Card, CardContent, CardMedia, Typography } from '@material
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        padding: '30px 15px',
+        padding: '50px 15px',
         backgroundColor: '#fffafa',
         display: 'flex',
         flexDirection: 'row',

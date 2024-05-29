@@ -9,6 +9,8 @@ import { HeroSection } from './components/HeroSection'
 import { CategoryImageSection } from './components/CategoryImageSection'
 import { CarouselComponent } from './components/CarouselComponent'
 import { PromotionCoupon } from './components/PromotionCoupon'
+import { PopularItem } from './components/PopularItem'
+import { Footer } from './components/Footer'
 
 import './index.css'
 
@@ -50,14 +52,25 @@ class App extends Component {
 
           <CategoryImageSection />
 
-          <Box style={{ margin: 30, backgroundColor: '#f8f8f8', margin: 300 }}>
-
+          <Box style={{ backgroundColor: '#f8f8f8', margin: 100 }}>
+            <Typography variant="h6" color="primary"
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                backgroundColor: '#f8f8f8'
+              }}>
+              See all Shops
+            </Typography>
           </Box>
 
           <CarouselComponent />
 
           <PromotionCoupon />
 
+          <PopularItem />
+
+          <Footer />
 
         </ThemeProvider >
 
