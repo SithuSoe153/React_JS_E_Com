@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 
 
-import { Typography, CssBaseline, AppBar, Toolbar } from '@material-ui/core';
+import { Typography, Box, CssBaseline, AppBar, Toolbar } from '@material-ui/core';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import { NavBar } from './components/NavBar'
+import { HeroSection } from './components/HeroSection'
+import { CategoryImageSection } from './components/CategoryImageSection'
+import { CarouselComponent } from './components/CarouselComponent'
+
+import './index.css'
 
 const theme = createTheme({
 
@@ -40,7 +45,13 @@ class App extends Component {
 
           <NavBar />
 
-        </ThemeProvider>
+          <HeroSection />
+
+          <CategoryImageSection />
+
+          <CarouselComponent />
+
+        </ThemeProvider >
 
 
       </>
