@@ -1,10 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
-
 import { Box, Button, Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
-
 
 // Import css files
 import "slick-carousel/slick/slick.css";
@@ -19,28 +16,74 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
     },
     root: {
-        // marginLeft: '30px'
         backgroundColor: '#FEFAF9',
-        margin: '0 15px', // Adds space between the cards
+        margin: '0 15px',
+        marginBottom: '50px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        height: '100%',
+        border: '1px solid #ddd', // Fix border
+        boxShadow: '0 2px 5px rgba(0,0,0,0.1)', // Add shadow for better border visibility
     },
     media: {
         height: 300,
     },
-    slickList: {
-        padding: '0 10px', // Add padding to the slider container to add space on sides
+    content: {
+        flexGrow: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
     },
-
+    title: {
+        height: 40,
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        display: '-webkit-box',
+        WebkitBoxOrient: 'vertical',
+        WebkitLineClamp: 1, // Ensure only one line is shown
+    },
+    price: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'black',
+    },
+    slickList: {
+        padding: '0 10px',
+    },
     NewArrival: {
         display: 'flex',
         justifyContent: 'space-between',
         margin: '0 15px',
         marginBottom: 50,
     }
-
 }));
+
+const truncateText = (text, maxLength) => {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + '...';
+};
 
 const PopularItem = () => {
     const classes = useStyles();
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('https://dev2.mtlexpress.com.mm/qq-delivery-backend/v1/pos/product/listTopRatedProduct'); // Replace with your actual API URL
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const result = await response.json();
+                setItems(result.data.items); // Adjust this according to your actual response structure
+            } catch (error) {
+                console.error('Error fetching the products:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     const settings = {
         dots: true,
@@ -51,9 +94,6 @@ const PopularItem = () => {
         autoplaySpeed: 2000,
         pauseOnHover: true,
         arrows: false,
-        // nextArrow: <CustomNextArrow />,
-        // prevArrow: <CustomPrevArrow />,
-
         responsive: [
             {
                 breakpoint: 1024,
@@ -76,111 +116,34 @@ const PopularItem = () => {
         ],
     };
 
-    const randomSeed = Math.floor(Math.random() * 1000);
-
-    const items = [
-        {
-            id: 1,
-            image: `https://picsum.photos/400/400?random=${randomSeed + 1}`,
-            name: 'Samsung Galaxy S24 Ultra',
-            brand: 'Samsung',
-            price: 'MMK 5,690,000',
-        },
-        {
-            id: 2,
-            image: `https://picsum.photos/400/400?random=${randomSeed + 2}`,
-            name: 'CK ONE',
-            brand: 'Calvin Klein',
-            price: 'MMK 340,300',
-        },
-        {
-            id: 3,
-            image: `https://picsum.photos/400/400?random=${randomSeed + 3}`,
-            name: 'Zinger Stacker Combo',
-            brand: 'KFC',
-            price: 'MMK 7,000',
-        },
-        {
-            id: 4,
-            image: `https://picsum.photos/400/400?random=${randomSeed + 4}`,
-            name: 'BLACKPINK 2ND ALBUM',
-            brand: 'YG Entertainment',
-            price: 'MMK 487,500',
-        },
-        {
-            id: 5,
-            image: `https://picsum.photos/400/400?random=${randomSeed + 5}`,
-            name: 'Samsung Galaxy S24 Ultra',
-            brand: 'Samsung',
-            price: 'MMK 5,690,000',
-        },
-        {
-            id: 6,
-            image: `https://picsum.photos/400/400?random=${randomSeed + 6}`,
-            name: 'CK ONE',
-            brand: 'Calvin Klein',
-            price: 'MMK 340,300',
-        },
-        {
-            id: 7,
-            image: `https://picsum.photos/400/400?random=${randomSeed + 7}`,
-            name: 'Zinger Stacker Combo',
-            brand: 'KFC',
-            price: 'MMK 7,000',
-        },
-        {
-            id: 8,
-            image: `https://picsum.photos/400/400?random=${randomSeed + 8}`,
-            name: 'BLACKPINK 2ND ALBUM',
-            brand: 'YG Entertainment',
-            price: 'MMK 487,500',
-        },
-        {
-            id: 9,
-            image: `https://picsum.photos/400/400?random=${randomSeed + 9}`,
-            name: 'Samsung Galaxy S24 Ultra',
-            brand: 'Samsung',
-            price: 'MMK 5,690,000',
-        },
-    ];
-
     return (
         <div className={classes.container}>
-
             <Box className={classes.NewArrival}>
-
                 <Typography variant="h4" color="initial">
-                    <Box fontWeight="fontWeightBold">
-                        Popular Items
-                    </Box>
+                    <Box fontWeight="fontWeightBold">Popular Items</Box>
                 </Typography>
-
                 <Button variant="outlined" color="primary">
                     View All
                 </Button>
 
             </Box>
-
             <Slider {...settings} className={classes.carouselContainer}>
                 {items.map((item) => (
-                    <div key={item.id}>
+                    <div key={item.guid}>
                         <Card className={classes.root}>
                             <CardActionArea>
                                 <CardMedia
                                     className={classes.media}
-                                    image={item.image}
+                                    image={`https://dev2.mtlexpress.com.mm/qq-delivery-backend/v1/image/download/${item.img}`} // Adjust the URL as needed
                                     title={item.name}
                                 />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h6" component="h2">
-                                        {item.name}
+                                <CardContent className={classes.content}>
+                                    <Typography gutterBottom variant="h6" component="h2" className={classes.title}>
+                                        {truncateText(item.name, 30)} {/* Adjust maxLength as needed */}
                                     </Typography>
                                     <Typography variant="body2" color="textSecondary" component="p">
-                                        Brand: {item.brand}
-                                    </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        <Box fontSize={20} fontWeight="fontWeightBold" color="black">
-                                            {item.price}
+                                        <Box className={classes.price}>
+                                            MMK {item.priceSell}
                                         </Box>
                                     </Typography>
                                 </CardContent>
