@@ -11,6 +11,7 @@ import { CarouselComponent } from './components/CarouselComponent'
 import { PromotionCoupon } from './components/PromotionCoupon'
 import { PopularItem } from './components/PopularItem'
 import { Footer } from './components/Footer'
+import { ProductList } from './views/ProductList'
 
 import './index.css'
 
@@ -47,6 +48,8 @@ class App extends Component {
         <ThemeProvider theme={theme}>
 
           <NavBar />
+
+          <ProductList />
 
           <HeroSection />
 

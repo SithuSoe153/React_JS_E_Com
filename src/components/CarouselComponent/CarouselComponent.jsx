@@ -133,7 +133,7 @@ const CustomCarousel = () => {
                             <CardActionArea>
                                 <CardMedia
                                     className={classes.media}
-                                    image={`https://dev2.mtlexpress.com.mm/qq-delivery-backend/v1/image/download/${item.img}`} // Adjust the URL as needed
+                                    image={item.img ? `https://dev2.mtlexpress.com.mm/qq-delivery-backend/v1/image/download/${item.img}` : './comingSoon.jpg'}
                                     title={item.name}
                                 />
                                 <CardContent className={classes.content}>

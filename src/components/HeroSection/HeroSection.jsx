@@ -60,7 +60,7 @@ const HeroSection = () => {
     const classes = useStyles();
 
     return (
-        <Box className={classes.container}> {/* Use Box instead of Container */}
+        <Box className={classes.container}>
             <CategorySection />
             <Box className={classes.mediaContainer}>
                 {/* <Card className={classes.card}>
